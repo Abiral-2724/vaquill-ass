@@ -52,43 +52,13 @@ Before you begin, ensure you have the following installed:
 - **MongoDB** (v4.4 or higher) - [Download](https://www.mongodb.com/try/download/community)
 - **Git** - [Download](https://git-scm.com/downloads)
 
-## 🚀 Installation
+## 🚀 Running backend / frontend
 
 ### 1. Clone the Repository
-
 ```bash
 git clone <repository-url>
 cd ai-judge-system
 ```
-
-### 2. Install Backend Dependencies
-
-```bash
-# Navigate to the backend directory (assuming it's in the root or server folder)
-cd server  # or stay in root if server files are there
-npm install
-```
-
-**Required Backend Dependencies:**
-```bash
-npm install express socket.io cors jsonwebtoken bcryptjs multer mongoose dotenv
-```
-
-### 3. Install Frontend Dependencies
-
-```bash
-cd client
-npm install
-```
-
-**Key Frontend Dependencies (automatically installed):**
-- react
-- react-dom
-- axios
-- socket.io-client
-- tailwindcss
-
-## ⚙️ Configuration
 
 ### Backend Configuration
 
