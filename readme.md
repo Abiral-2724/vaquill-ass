@@ -2,19 +2,6 @@
 
 An AI-powered legal judgment platform that allows users to present cases, submit arguments, upload evidence, and receive AI-generated legal decisions. Built with React, Node.js, and Socket.IO for real-time collaboration.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Usage Guide](#usage-guide)
-- [API Endpoints](#api-endpoints)
-- [Troubleshooting](#troubleshooting)
-
 ## ✨ Features
 
 - **User Authentication**: Secure registration and login system
