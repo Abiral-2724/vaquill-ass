@@ -41,7 +41,7 @@ An AI-powered legal judgment platform that allows users to present cases, submit
 - Socket.IO (WebSocket server)
 - JWT (authentication)
 - Multer (file uploads)
-- MongoDB/Database (assumed - not visible in frontend code)
+- MongoDB/Database 
 
 ## 📦 Prerequisites
 
@@ -95,63 +95,23 @@ npm install
 Create a `.env` file in the backend directory:
 
 ```env
-# Server Configuration
+GEMINI_API_KEY=
+MONGODB_URI=
+JWT_SECRET=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 PORT=5001
-NODE_ENV=development
-
-# Database
-MONGODB_URI=mongodb://localhost:27017/ai-judge
-# Or use MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ai-judge
-
-# JWT Secret
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-
-# File Upload
-MAX_FILE_SIZE=10485760  # 10MB in bytes
-UPLOAD_PATH=./uploads
-
-# AI Configuration (if using external AI service)
-AI_API_KEY=your-ai-api-key
-AI_API_URL=https://api.your-ai-service.com
-```
-
-### Frontend Configuration
-
-The frontend is configured to connect to `http://localhost:5001`. If your backend runs on a different port, update the API URLs in:
-
-- `client/src/App.js`
-- `client/src/components/Auth.js`
-- `client/src/components/Courtroom.js`
-- `client/src/components/SidePanel.js`
-- `client/src/components/Dashboard.js`
-
-### Tailwind CSS Configuration
-
-Tailwind is already configured. The `client/tailwind.config.js` should include:
-
-```javascript
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
 ```
 
 ## 🏃 Running the Application
 
-### Option 1: Run Backend and Frontend Separately
 
 #### Start the Backend Server
 
 ```bash
-# From the backend/server directory
-npm start
-# Or for development with auto-restart:
+cd backend
+npm install
 npm run dev  # (requires nodemon)
 ```
 
@@ -162,36 +122,12 @@ The backend should now be running on `http://localhost:5001`
 ```bash
 # From the client directory
 cd client
+npm install
 npm start
 ```
 
 The frontend will open automatically at `http://localhost:3000`
 
-### Option 2: Run with Concurrently (Recommended)
-
-Install concurrently in the root directory:
-
-```bash
-npm install concurrently --save-dev
-```
-
-Add to root `package.json`:
-
-```json
-{
-  "scripts": {
-    "server": "cd server && npm start",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  }
-}
-```
-
-Then run:
-
-```bash
-npm run dev
-```
 
 ## 📁 Project Structure
 
@@ -223,8 +159,8 @@ ai-judge-system/
 │   ├── uploads/              # Uploaded documents
 │   ├── server.js             # Main server file
 │   └── package.json
-├── .env                      # Environment variables
-├── .gitignore
+│   └── .env   # Environment variables
+│        
 └── README.md
 ```
 
@@ -267,112 +203,6 @@ ai-judge-system/
 - Return to Dashboard to see all your cases
 - Cases show status: New, In Progress, or Decided
 - Click any case to view or continue
-
-## 🔌 API Endpoints
-
-### Authentication
-
-```
-POST /api/auth/register
-Body: { name, email, password }
-
-POST /api/auth/login
-Body: { email, password }
-```
-
-### Cases
-
-```
-GET /api/cases/user
-Headers: { Authorization: Bearer <token> }
-
-POST /api/cases
-Headers: { Authorization: Bearer <token> }
-
-GET /api/cases/:caseId
-Headers: { Authorization: Bearer <token> }
-
-POST /api/cases/:caseId/upload/:side
-Headers: { Authorization: Bearer <token> }
-Body: FormData with 'documents' field
-
-POST /api/cases/:caseId/argue/:side
-Headers: { Authorization: Bearer <token> }
-Body: { argument }
-
-POST /api/cases/:caseId/judge
-Headers: { Authorization: Bearer <token> }
-```
-
-### WebSocket Events
-
-```
-socket.emit('joinCase', caseId)
-socket.on('aiDecision', (decision) => {})
-socket.on('newArgument', (data) => {})
-socket.on('documentUploaded', (data) => {})
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**1. Backend won't start**
-- Check if MongoDB is running: `mongod` or check MongoDB service
-- Verify PORT 5001 is not in use: `lsof -i :5001` (Mac/Linux) or `netstat -ano | findstr :5001` (Windows)
-- Check `.env` file exists and is configured correctly
-
-**2. Frontend can't connect to backend**
-- Ensure backend is running on port 5001
-- Check for CORS errors in browser console
-- Verify API URLs in frontend code match backend port
-
-**3. File uploads failing**
-- Check `uploads/` directory exists and has write permissions
-- Verify file size is under the limit (10MB default)
-- Check file type is supported (PDF, DOC, DOCX, TXT)
-
-**4. Socket.IO not connecting**
-- Ensure backend Socket.IO server is initialized
-- Check for firewall blocking WebSocket connections
-- Verify client is connecting to correct URL
-
-**5. JWT Authentication errors**
-- Clear browser localStorage and re-login
-- Check JWT_SECRET is set in backend `.env`
-- Verify token is being sent in Authorization header
-
-### Development Tips
-
-```bash
-# Clear npm cache if having dependency issues
-npm cache clean --force
-
-# Reinstall all dependencies
-rm -rf node_modules package-lock.json
-npm install
-
-# Check for port conflicts
-lsof -i :5001  # Backend
-lsof -i :3000  # Frontend
-
-# View backend logs
-# Add console.log statements or use a logger like Winston
-
-# React DevTools
-# Install React DevTools browser extension for debugging
-```
-
-## 📝 Environment Variables Reference
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| PORT | Backend server port | 5001 |
-| MONGODB_URI | MongoDB connection string | mongodb://localhost:27017/ai-judge |
-| JWT_SECRET | Secret key for JWT signing | your-secret-key |
-| MAX_FILE_SIZE | Max upload size in bytes | 10485760 |
-| UPLOAD_PATH | Directory for uploaded files | ./uploads |
-| AI_API_KEY | API key for AI service | your-api-key |
 
 ## 🤝 Contributing
 
