@@ -183,4 +183,4 @@ For issues and questions:
 
 ---
 
-**Built with ⚖️ by the AI Judge Team**
+**Built with ⚖️ by the Abiral jain*
