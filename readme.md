@@ -1,6 +1,7 @@
 # AI Judge System 🏛️⚖️
 
 An AI-powered legal judgment platform that allows users to present cases, submit arguments, upload evidence, and receive AI-generated legal decisions. Built with React, Node.js, and Socket.IO for real-time collaboration.
+Project video : https://youtu.be/z6hCl3B-JQA
 
 ## ✨ Features
 
